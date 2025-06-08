@@ -75,7 +75,7 @@ const HappyCustomers = () => {
     null
   );
   return (
-    <>
+    <section id="happy-customers">
       <div className="flex items-center justify-center lg:justify-between lg:px-64 mt-16 mb-12">
         <p className="text-2xl lg:text-5xl font-extrabold">
           OUR HAPPY CUSTOMER
@@ -116,7 +116,7 @@ const HappyCustomers = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </section>
   );
 };
 

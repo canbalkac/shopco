@@ -1,34 +1,45 @@
-import { Star, StarHalf } from "lucide-react";
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import type { Product } from "@/lib/data";
 
-type productCardProps = {
-  title: string;
-  price: number;
-  stars: number;
-};
-
-const ProductCard = ({ title, price, stars, ...props }: productCardProps) => {
+const ProductCard = ({ product }: { product: Product }) => {
   return (
-    <div {...props} className="flex flex-col itesm-center max-w-[295px]">
+    <Link href={`/product/${product.slug}`} className="block space-y-2">
       <Image
-        src="/images/herobg.png"
-        alt="new-arrivals"
-        width={295}
-        height={298}
-        className="rounded-sm w-[295px] h-[298px]"
+        src={product.images[0]}
+        alt={product.title}
+        width={300}
+        height={300}
+        className="rounded-lg object-cover w-full"
       />
-      <p className="ml-1 mt-1 font-bold">{title}</p>
-      <p className="ml-0.5 flex gap-0.5">
-        <Star color="orange" fill="orange" />
-        <Star color="orange" fill="orange" />
-        <Star color="orange" fill="orange" />
-        <Star color="orange" fill="orange" />
-        <StarHalf color="orange" fill="orange" />
-        {stars}/5.0
-      </p>
-      <p className="text-xl font-semibold">${price}</p>
-    </div>
+      <h3 className="font-semibold text-sm">{product.title}</h3>
+      <div className="flex items-center text-yellow-400 text-sm">
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <FaStarHalfAlt />
+        <span className="text-gray-500 ml-2">{product.rating}/5.0</span>
+      </div>
+      <p className="font-bold text-black">${product.price}</p>
+      {product.originalPrice > product.price && (
+        <div className="flex items-center gap-2 text-sm text-gray-500">
+          <span className="line-through">${product.originalPrice}</span>
+          <span className="bg-red-100 text-red-500 px-2 py-0.5 rounded-full text-xs">
+            -
+            {Math.round(
+              ((product.originalPrice - product.price) /
+                product.originalPrice) *
+                100
+            )}
+            %
+          </span>
+        </div>
+      )}
+    </Link>
   );
 };
 

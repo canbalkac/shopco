@@ -10,17 +10,35 @@ import CustomBreadcrumb from "./BreadCrumb";
 
 type Product = Awaited<ReturnType<typeof getProductBySlug>>;
 
-const ProductDetails = ({ product }: { product: Product }) => {
+const ProductDetails = ({ product }: { product: Product[] }) => {
   const images = product.images;
   const colors = product.colors;
   const sizes = product.sizes;
 
-  const [selectedImage, setSelectedImage] = useState(images[0]);
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
-  const [selectedSize, setSelectedSize] = useState("Large");
-  const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState<string>(images[0]);
+  const [selectedColor, setSelectedColor] = useState<string>("");
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [quantity, setQuantity] = useState<number>(1);
+  const [isWarningOpen, setIsWarningOpen] = useState<boolean>(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
+
+  const handleAddToCart = () => {
+    if (!selectedColor || !selectedSize) {
+      setIsWarningOpen(true);
+      return;
+    }
+    addToCart({
+      slug: product.slug,
+      title: product.title,
+      price: product.price,
+      size: selectedSize,
+      color: selectedColor,
+      originalPrice: product?.originalPrice,
+      quantity,
+      image: product.images[0],
+    });
+  };
 
   return (
     <>
@@ -33,7 +51,7 @@ const ProductDetails = ({ product }: { product: Product }) => {
               label:
                 product.category.charAt(0).toUpperCase() +
                 product.category.slice(1),
-              href: `/shop/${product.category}`,
+              href: `/shop/${product.category.toLowerCase()}`,
             },
             { label: product.title },
           ]}
@@ -178,20 +196,18 @@ const ProductDetails = ({ product }: { product: Product }) => {
               </button>
             </div>
             <button
-              onClick={() =>
-                addToCart({
-                  slug: product.slug,
-                  title: product.title,
-                  price: product.price,
-                  quantity,
-                  image: product.images[0],
-                })
-              }
+              onClick={handleAddToCart}
               className="bg-black text-white px-8 py-3 rounded-full font-medium cursor-pointer"
             >
               Add to Cart
             </button>
           </div>
+
+          {isWarningOpen && (
+            <p className="text-sm text-red-500 mt-2">
+              Please select both a color and size before adding to cart.
+            </p>
+          )}
         </div>
       </div>
     </>

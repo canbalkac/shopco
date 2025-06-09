@@ -12,6 +12,14 @@ export type Product = {
   dressStyle: "Casual" | "Formal" | "Party" | "Gym";
 };
 
+type FilterParams = {
+  category?: string | null;
+  color?: string | null;
+  size?: string | null;
+  price?: string | null; // format: "min-max", örn: "100-300"
+  style?: string | null;
+};
+
 const products: Product[] = [
   {
     slug: "one-life-tshirt",
@@ -102,7 +110,7 @@ const products: Product[] = [
 ];
 
 export async function getProductBySlug(slug: string) {
-  return products.find((product) => product.slug === slug) ?? null;
+  return products.find((product) => product.slug === slug);
 }
 export async function getNewArrivalProducts(): Promise<Product[]> {
   return products.slice(0, 4);
@@ -128,4 +136,55 @@ export async function getProductsByCategory(
 
 export async function getAllProducts(): Promise<Product[]> {
   return products;
+}
+
+export async function getProductsByDressStyle(
+  style: string
+): Promise<Product[]> {
+  return products.filter(
+    (p) => p.dressStyle.toLowerCase() === style.toLowerCase()
+  );
+}
+
+export async function getFilteredProducts({
+  category,
+  color,
+  size,
+  price,
+  style,
+}: FilterParams): Promise<Product[]> {
+  let filtered = [...products];
+
+  if (category) {
+    filtered = filtered.filter(
+      (p) => p.category.toLowerCase() === category.toLowerCase()
+    );
+  }
+
+  if (color) {
+    filtered = filtered.filter((p) =>
+      p.colors.some(
+        (c) => c.toLowerCase() === color.toLowerCase() || c === color
+      )
+    );
+  }
+
+  if (size) {
+    filtered = filtered.filter((p) =>
+      p.sizes.some((s) => s.toLowerCase() === size.toLowerCase())
+    );
+  }
+
+  if (price) {
+    const [min, max] = price.split("-").map(Number);
+    filtered = filtered.filter((p) => p.price >= min && p.price <= max);
+  }
+
+  if (style) {
+    filtered = filtered.filter(
+      (p) => p.dressStyle.toLowerCase() === style.toLowerCase()
+    );
+  }
+
+  return filtered;
 }

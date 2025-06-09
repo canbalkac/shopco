@@ -13,15 +13,15 @@ import Link from "next/link";
 const shops: { title: string; href: string }[] = [
   {
     title: "Man",
-    href: "/products?gender=man",
+    href: "/shop?gender=man",
   },
   {
     title: "Woman",
-    href: "/procusts?gender=woman",
+    href: "/shop?gender=woman",
   },
   {
     title: "Kids",
-    href: "/products?gender=kids",
+    href: "/shop?gender=kids",
   },
 ];
 
@@ -45,19 +45,19 @@ const Menu = () => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/products">On Sale</Link>
+            <Link href="/shop">On Sale</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/products">New Arrivals</Link>
+            <Link href="/shop">New Arrivals</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/products">Brands</Link>
+            <Link href="/shop">Brands</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

@@ -15,9 +15,15 @@ type Crumb = {
   href?: string;
 };
 
-export default function CustomBreadcrumb({ crumbs }: { crumbs: Crumb[] }) {
+export default function CustomBreadcrumb({
+  crumbs,
+  className,
+}: {
+  crumbs: Crumb[];
+  className?: string;
+}) {
   return (
-    <Breadcrumb>
+    <Breadcrumb className={className}>
       <BreadcrumbList>
         {crumbs.map((crumb, index) => (
           <React.Fragment key={index}>

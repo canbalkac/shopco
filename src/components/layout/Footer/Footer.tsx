@@ -27,7 +27,7 @@ const Footer = () => {
         <div className="space-y-4">
           <h3 className="text-xl font-bold">SHOP.CO</h3>
           <p className="text-sm text-gray-700">
-            We have clothes that suits your style and which you're proud to
+            We have clothes that suits your style and which you&apos;re proud to
             wear. From women to men.
           </p>
           <div className="flex gap-4 mt-2">

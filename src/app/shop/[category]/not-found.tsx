@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // app/shop/[category]/not-found.tsx
 export default function NotFound() {
   return (
@@ -6,12 +8,12 @@ export default function NotFound() {
       <p className="text-gray-600 mb-6">
         The category you are looking for doesn&apos;t exist or has no products.
       </p>
-      <a
+      <Link
         href="/shop"
         className="bg-black text-white px-6 py-2 rounded-full text-sm hover:opacity-90"
       >
         Back to Shop
-      </a>
+      </Link>
     </div>
   );
 }

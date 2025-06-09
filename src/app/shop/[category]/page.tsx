@@ -1,6 +1,7 @@
 import CustomBreadcrumb from "@/components/Products/BreadCrumb";
 import ProductCard from "@/components/ui/components/products/product-card";
 import { getProductsByCategory } from "@/lib/data";
+import { capitalize } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -30,8 +31,4 @@ export default async function CategoryPage({ params }: Props) {
       </div>
     </div>
   );
-}
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }

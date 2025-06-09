@@ -4,14 +4,17 @@ import LogosMarquee from "@/components/Home/Hero/Components/LogosMarquee";
 import Hero from "@/components/Home/Hero/Hero";
 import NewArrivals from "@/components/Home/NewArrivals/NewArrivals";
 import TopSelling from "@/components/Home/TopSelling/TopSelling";
+import { getNewArrivalProducts, getTopSellingProducts } from "@/lib/data";
 
-export default function Home() {
+export default async function Home() {
+  const newArrivalsProducts = await getNewArrivalProducts();
+  const topSellingProducts = await getTopSellingProducts();
   return (
     <>
       <Hero />
       <LogosMarquee />
-      <NewArrivals />
-      <TopSelling />
+      <NewArrivals products={newArrivalsProducts} />
+      <TopSelling products={topSellingProducts} />
       <DressStyle />
       <HappyCustomers />
     </>

@@ -1,5 +1,5 @@
 "use client";
-import { getProductBySlug } from "@/lib/data";
+import { Product } from "@/lib/data";
 import Image from "next/image";
 import { useState } from "react";
 import { FaCheck, FaStar, FaStarHalfAlt } from "react-icons/fa";
@@ -8,9 +8,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import CustomBreadcrumb from "./BreadCrumb";
 
-type Product = Awaited<ReturnType<typeof getProductBySlug>>;
+type ProductProps = Product;
 
-const ProductDetails = ({ product }: { product: Product[] }) => {
+const ProductDetails = ({ product }: { product: ProductProps }) => {
   const images = product.images;
   const colors = product.colors;
   const sizes = product.sizes;

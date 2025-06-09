@@ -4,12 +4,12 @@ import { getProductsByCategory } from "@/lib/data";
 import { capitalize } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
-type Props = {
-  params: { category: string };
-};
-
-export default async function CategoryPage({ params }: Props) {
-  const category = params.category.toLowerCase();
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
   const products = await getProductsByCategory(category);
 
   if (!products || products.length === 0) return notFound();

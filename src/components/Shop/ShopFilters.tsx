@@ -1,11 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-export default function ShopFilters({
-  currentCategory,
-}: {
-  currentCategory?: string;
-}) {
+export default function ShopFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [priceMin, setPriceMin] = useState(searchParams.get("priceMin") || "0");

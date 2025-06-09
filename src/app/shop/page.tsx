@@ -7,14 +7,16 @@ import { capitalize } from "@/lib/utils";
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string };
+  searchParams: Promise<{ [key: string]: string }>;
 }) {
-  const category = searchParams.category?.toLowerCase();
-  const style = searchParams.style?.toLowerCase();
-  const size = searchParams.size?.toLowerCase();
-  const color = searchParams.color?.toLowerCase();
-  const rawMin = Number(searchParams.priceMin);
-  const rawMax = Number(searchParams.priceMax);
+  const params = await searchParams;
+
+  const category = params.category?.toLowerCase();
+  const style = params.style?.toLowerCase();
+  const size = params.size?.toLowerCase();
+  const color = params.color?.toLowerCase();
+  const rawMin = Number(params.priceMin);
+  const rawMax = Number(params.priceMax);
 
   const priceMin = isNaN(rawMin) ? 0 : rawMin;
   const priceMax = isNaN(rawMax) ? Infinity : rawMax;
@@ -23,30 +25,30 @@ export default async function ShopPage({
 
   let products = await getAllProducts();
 
-  const sort = searchParams.sort || "popular";
+  const sort = params.sort || "popular";
 
   if (sort === "price-low") {
     products.sort((a, b) => a.price - b.price);
   } else if (sort === "price-high") {
     products.sort((a, b) => b.price - a.price);
   } else if (sort === "new") {
-    products.sort((a, b) => b.rating - a.rating); // örnek
+    products.sort((a, b) => b.rating - a.rating);
   } else {
     products.sort((a, b) => b.rating - a.rating);
   }
 
-  if (searchParams.gender) {
-    crumbs.push({ label: capitalize(searchParams.gender) });
+  if (params.gender) {
+    crumbs.push({ label: capitalize(params.gender) });
   }
 
   if (style) {
     products = products.filter((p) => p.dressStyle.toLowerCase() === style);
-    crumbs.push({ label: capitalize(searchParams.style) });
+    crumbs.push({ label: capitalize(params.style) });
   }
 
   if (category) {
     products = products.filter((p) => p.category.toLowerCase() === category);
-    crumbs.push({ label: capitalize(searchParams.category) });
+    crumbs.push({ label: capitalize(params.category) });
   }
 
   if (size) {

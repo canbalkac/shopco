@@ -117,3 +117,15 @@ export async function getSuggestedProducts(
 ): Promise<Product[]> {
   return products.filter((p) => p.slug !== currentSlug).slice(0, 4);
 }
+
+export async function getProductsByCategory(
+  category: string
+): Promise<Product[]> {
+  return products.filter(
+    (p) => p.category.toLowerCase() === category.toLowerCase()
+  );
+}
+
+export async function getAllProducts(): Promise<Product[]> {
+  return products;
+}

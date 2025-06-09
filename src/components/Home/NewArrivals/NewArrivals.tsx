@@ -16,11 +16,11 @@ const NewArrivals = ({ products }: { products: Product[] }) => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.8 }} // %80’i görünmeden başlamaz
+        viewport={{ once: true, amount: 0.2 }}
         variants={{
           visible: {
             transition: {
-              staggerChildren: 0.1, // sırayla gelsin
+              staggerChildren: 0.1,
             },
           },
         }}

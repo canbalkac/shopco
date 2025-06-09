@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const DressStyle = () => {
   return (
@@ -33,7 +34,9 @@ const DressStyle = () => {
             transition={{ duration: 0.5 }}
             className="col-span-1 h-[300px] relative rounded-xl overflow-hidden"
           >
-            <Image src="/images/casual.png" alt="casual" fill quality={100} />
+            <Link href={"/shop?style=casual"}>
+              <Image src="/images/casual.png" alt="casual" fill quality={100} />
+            </Link>
           </motion.div>
           <motion.div
             variants={{
@@ -43,7 +46,9 @@ const DressStyle = () => {
             transition={{ duration: 0.5 }}
             className="col-span-2 h-[300px] relative rounded-xl overflow-hidden"
           >
-            <Image src="/images/formal.png" alt="formal" fill quality={100} />
+            <Link href={"/shop?style=formal"}>
+              <Image src="/images/formal.png" alt="formal" fill quality={100} />
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -69,7 +74,9 @@ const DressStyle = () => {
             transition={{ duration: 0.5 }}
             className="lg:col-span-2 h-[300px] relative rounded-xl overflow-hidden"
           >
-            <Image src="/images/party.png" alt="party" fill quality={100} />
+            <Link href={"/shop?style=party"}>
+              <Image src="/images/party.png" alt="party" fill quality={100} />
+            </Link>
           </motion.div>
           <motion.div
             variants={{
@@ -79,7 +86,9 @@ const DressStyle = () => {
             transition={{ duration: 0.5 }}
             className="col-span-1 h-[300px] relative rounded-xl overflow-hidden"
           >
-            <Image src="/images/gym.png" alt="gym" fill quality={100} />
+            <Link href={"/shop?style=gym"}>
+              <Image src="/images/gym.png" alt="gym" fill quality={100} />
+            </Link>
           </motion.div>
         </motion.div>
       </div>

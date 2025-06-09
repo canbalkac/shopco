@@ -4,6 +4,7 @@ import ProductCard from "@/components/ui/components/products/product-card";
 import React from "react";
 import { motion } from "framer-motion";
 import { Product } from "@/lib/data";
+import Link from "next/link";
 
 const NewArrivals = ({ products }: { products: Product[] }) => {
   return (
@@ -38,12 +39,14 @@ const NewArrivals = ({ products }: { products: Product[] }) => {
           </motion.div>
         ))}
       </motion.div>
-      <Button
-        variant={"outline"}
-        className="px-12 py-5 cursor-pointer rounded-full"
-      >
-        View All
-      </Button>
+      <Link href={"/shop"}>
+        <Button
+          variant={"outline"}
+          className="px-12 py-5 cursor-pointer rounded-full"
+        >
+          View All
+        </Button>
+      </Link>
       <div className="border w-2/3 h-1 bg-gray-200" />
     </section>
   );

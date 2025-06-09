@@ -79,7 +79,10 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto py-4 px-6 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600 border-t mt-10">
-        <p>Shop.co © 2000-2023, All Rights Reserved</p>
+        <p>
+          Shop.co © 2000-2025, All Rights Reserved Developer:{" "}
+          <span className="font-extrabold">CAN BALKAÇ</span>
+        </p>
         <div className="flex items-center gap-3 mt-2 sm:mt-0">
           <Image src="/visa.svg" alt="Visa" width={40} height={25} />
           <Image src="/paypal.svg" alt="Paypal" width={40} height={25} />

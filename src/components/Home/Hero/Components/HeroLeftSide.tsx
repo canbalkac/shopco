@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../../ui/button";
 import CountUp from "react-countup";
 import { Separator } from "../../../ui/separator";
+import Link from "next/link";
 
 const counts: { duration: number; end: number; text: string }[] = [
   {
@@ -32,7 +33,11 @@ const HeroLeftSide = () => {
         designed to bring out your individuality and cater to your sense of
         style.
       </p>
-      <Button className="rounded-full w-42 p-4 cursor-pointer">Shop Now</Button>
+      <Link href={"/shop"}>
+        <Button className="rounded-full w-42 p-4 cursor-pointer">
+          Shop Now
+        </Button>
+      </Link>
       <div className="flex items-center gap-3 h-16">
         {counts.map((count, index) => (
           <div key={index} className="flex h-16 space-x-4">

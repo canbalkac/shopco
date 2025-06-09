@@ -80,11 +80,11 @@ export default function ShopFilters() {
               <li key={cat}>
                 <button
                   onClick={() => handleCategoryClick(cat)}
-                  className={`flex items-center justify-between text-left w-full py-1 px-2 rounded ${
+                  className={`flex items-center justify-between text-left w-full py-1 px-2 rounded hover:bg-gray-100 ${
                     searchParams.get("category")?.toLowerCase() ===
                     cat.toLowerCase()
-                      ? "bg-black text-white hover:bg-gray-100 hover:text-black"
-                      : "hover:bg-gray-100"
+                      ? "bg-black text-white hover:text-black"
+                      : ""
                   }`}
                 >
                   <span>{cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
@@ -169,14 +169,20 @@ export default function ShopFilters() {
               <li key={style}>
                 <button
                   onClick={() => handleStyleClick(style)}
-                  className={`text-left w-full py-1 px-2 rounded hover:bg-gray-100 ${
+                  className={`flex items-center justify-between text-left w-full py-1 px-2 rounded hover:bg-gray-100 ${
                     searchParams.get("style")?.toLowerCase() ===
                     style.toLowerCase()
-                      ? "bg-black text-white"
+                      ? "bg-black text-white hover:text-black"
                       : ""
                   }`}
                 >
-                  {style}
+                  <span>{style}</span>
+                  {searchParams.get("style")?.toLowerCase() ===
+                    style.toLowerCase() && (
+                    <span className="ml-2 p-0.5 text-sm font-semibold cursor-pointer">
+                      X
+                    </span>
+                  )}
                 </button>
               </li>
             ))}

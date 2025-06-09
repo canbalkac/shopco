@@ -21,7 +21,7 @@ Shopco is a modern, responsive, and fully customizable e-commerce template built
 
 ## 🖼️ Preview
 
-> **Live demo** [(Coming Soon)](https://shopco-liart-eight.vercel.app/)
+> **Live demo** [(LIVE DEMO LINK)](https://shopco-liart-eight.vercel.app/)
 
 ---
 
